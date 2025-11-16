@@ -99,7 +99,8 @@
             <div class="w3-content" style="max-width:600px">
                 <h4 class="w3-center"><b>Contact Me</b></h4>
                 <p>Considering hiring me? Fill out the form and tell me the details. I love learning of new opportunities and things happening in the industry.</p>
-                <form action="/action_page.php" target="_blank">
+                <form action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="b329726c-ae80-4cff-918c-3ac6fa7c167a">
                     <div class="w3-section">
                         <label>Name</label>
                         <input class="w3-input w3-border" type="text" name="Name" required>
@@ -133,6 +134,8 @@
         document.getElementById("mySidebar").style.display = "none";
         document.getElementById("myOverlay").style.display = "none";
     }
-</script>     
+</script>
+<script src=forms_submission.js></script>
 </body>
 </html>
+
