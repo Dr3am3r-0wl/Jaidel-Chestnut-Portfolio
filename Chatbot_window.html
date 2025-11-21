@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <div class="chat-popup" id="myForm">
+  <form action="/action_page.php" class="form-container">
+    <h1>Chat</h1>
+
+    <label for="msg"><b>Message</b></label>
+    <textarea placeholder="Type message.." name="msg" required></textarea>
+
+    <button type="submit" class="btn">Send</button>
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+    <script>
+        $("#userInput").keypress(function(e) {
+      if(e.which == 13) {
+        let userText = $("#userInput").val();
+        $("#chatbox").append("<div class='user'>You: " + userText + "</div>");
+        $.get("/get", { msg: userText }).done(function(data) {
+          $("#chatbox").append("<div class='bot'>Bot: " + data + "</div>");
+        });
+        $("#userInput").val("");
+        $("#chatbox").scrollTop($("#chatbox")[0].scrollHeight);
+      }
+    });
+    </script>
+  </form>
+</div>
+    </head>
+</html>
