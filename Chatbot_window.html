@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <style>
+        {% raw %}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Montserrat", sans-serif;
+            background: #f5f5f5;
+        }
+
+        .chat-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #000;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: transform 0.3s;
+        }
+
+        .chat-button:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-popup {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            z-index: 999;
+        }
+
+        .chat-popup.active {
+            display: flex;
+        }
+
+        .chat-header {
+            background: #000;
+            color: white;
+            padding: 20px;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #f9f9f9;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .message.user {
+            align-items: flex-end;
+        }
+
+        .message.bot {
+            align-items: flex-start;
+        }
+
+        .message-bubble {
+            max-width: 70%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            word-wrap: break-word;
+        }
+
+        .message.user .message-bubble {
+            background: #000;
+            color: white;
+        }
+
+        .message.bot .message-bubble {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        .message-label {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .chat-input-container {
+            padding: 15px;
+            border-top: 1px solid #ddd;
+            background: white;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .chat-input-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .send-btn {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .send-btn:hover {
+            background: #333;
+        }
+
+        @media (max-width: 600px) {
+            .chat-popup {
+                width: 100%;
+                height: 100%;
+                bottom: 0;
+                right: 0;
+                border-radius: 0;
+            }
+
+            .chat-button {
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+        {% endraw %}
+    </style>
+</head>
+<body>
+    <button class="chat-button" onclick="toggleChat()">💬</button>
+
+    <div class="chat-popup" id="chatPopup">
+        <div class="chat-header">
+            <h3>Chat with me!</h3>
+            <button class="close-btn" onclick="toggleChat()">&times;</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot">
+                <span class="message-label">Bot</span>
+                <div class="message-bubble">Hello! How can I help you today?</div>
+            </div>
+        </div>
+        <div class="chat-input-container">
+            <form class="chat-input-form" onsubmit="sendMessage(event)">
+                <input type="text" class="chat-input" id="userInput" placeholder="Type a message..." autocomplete="off">
+                <button type="submit" class="send-btn">Send</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleChat() {
+            const popup = document.getElementById('chatPopup');
+            popup.classList.toggle('active');
+            if (popup.classList.contains('active')) {
+                document.getElementById('userInput').focus();
+            }
+        }
+
+        function sendMessage(event) {
+            event.preventDefault();
+            const input = document.getElementById('userInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+
+            const messagesContainer = document.getElementById('chatMessages');
+            
+            const userMessageDiv = document.createElement('div');
+            userMessageDiv.className = 'message user';
+            userMessageDiv.innerHTML = `
+                <span class="message-label">You</span>
+                <div class="message-bubble">${escapeHtml(message)}</div>
+            `;
+            messagesContainer.appendChild(userMessageDiv);
+            
+            input.value = '';
+            
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            fetch(`/get?msg=${encodeURIComponent(message)}`)
+                .then(response => response.text())
+                .then(data => {
+                    const botMessageDiv = document.createElement('div');
+                    botMessageDiv.className = 'message bot';
+                    botMessageDiv.innerHTML = `
+                        <span class="message-label">Bot</span>
+                        <div class="message-bubble">${escapeHtml(data)}</div>
+                    `;
+                    messagesContainer.appendChild(botMessageDiv);
+                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    const errorDiv = document.createElement('div');
+                    errorDiv.className = 'message bot';
+                    errorDiv.innerHTML = `
+                        <span class="message-label">Bot</span>
+                        <div class="message-bubble">Sorry, I encountered an error. Please try again.</div>
+                    `;
+                    messagesContainer.appendChild(errorDiv);
+                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                });
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
+</body>
+</html>
