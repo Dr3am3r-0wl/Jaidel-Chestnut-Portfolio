@@ -27,7 +27,7 @@ function sendMessage(event) {
     input.value = '';
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-    fetch(`/get?msg=${encodeURIComponent(message)}`)
+    fetch(`https://jaidel-chestnut-portfolio.onrender.com?msg=${encodeURIComponent(message)}`)
         .then(response => response.text())
         .then(data => {
             const botMessageDiv = document.createElement('div');
@@ -57,3 +57,4 @@ function escapeHtml(text) {
     div.textContent = text;
     return div.innerHTML;
 }
+
