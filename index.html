@@ -1,4 +1,4 @@
-\<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <title>Welcome</title>
@@ -7,14 +7,14 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="<link rel="stylesheet" href="css/chatbot.css">">
-{% raw %}<style>
+<link rel="stylesheet" href="css/chatbot.css">
+<style>
     body, h1, h2, h3, h4, h5, h6, p, a {font-family: "Montserrat", sans-serif !important;}
     .w3-row-padding img {margin-bottom: 12px}
     .w3-sidebar {width: 120px; background: #222;}
     #main {margin-left: 120px;}
     @media only screen and (max-width: 600px) {#main {margin-left: 0}}
-</style>{% endraw %}
+</style>
 </head>
 <body class="w3-black">
     <!-- Sidebar/menu -->
@@ -61,7 +61,6 @@
                     <p>Contact me:</p>
                     <p>Email: chestnutjaidel@proton.me</p>
                     <p>Tel: 301-520-7230</p>
-                    <button type="submit" class="w3-button w3-block w3-white w3-margin-bottom"><a href={{ url_for('static', filename='Jaidel_Chestnut's_Resume.pdf') }} download>Download Resume</a></button>
                 </div>
             </div>
             <p class="w3-large w3-center w3-padding-16">Technical Skills:</p>
@@ -80,7 +79,7 @@
         </div>
         <div class="w3-row w3-center w3-dark-grey w3-padding-16">
             <div class="w3-quarter w3-section">
-                <span class="w3-xlarge">0</span><br>
+                <span class="w3-xlarge">5</span><br>
                 Partners
             </div>
             <div class="w3-quarter w3-section">
@@ -121,8 +120,8 @@
         </div>
         <!--Footer-->
         <footer class="w3-content w3-padding-64 w3-text-grey w3-xlarge">
-            <a href="https://www.linkedin.com/in/jaidel-chestnut-a691a2187/"><i class="fa fa-linkedin w3-hover-opacity"></i></a>
-            <a href="https://github.com/Dr3am3r-0wl"><i class="fa fa-github w3-hover-opacity"></i></a>
+            <i class="fa fa-linkedin w3-hover-opacity"></i>
+            <i class="fa fa-github w3-hover-opacity"><a href="https://github.com/Dr3am3r-0wl"></a></i>
             <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
         </footer>
      </div>
@@ -165,8 +164,3 @@
 <script src="js/chatbot.js"></script>
 </body>
 </html>
-
-
-
-
-
