@@ -1,3 +1,5 @@
+const BACKEND_URL = 'https://jaidel-chestnut-portfolio.onrender.com';
+
 // Chatbot functionality
 function toggleChat() {
     const popup = document.getElementById('chatPopup');
@@ -27,7 +29,7 @@ function sendMessage(event) {
     input.value = '';
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-    fetch(`https://jaidel-chestnut-portfolio.onrender.com/get?msg=${encodeURIComponent(message)}`)
+    fetch(`${BACKEND_URL}/get?msg=${encodeURIComponent(message)}`)
         .then(response => response.text())
         .then(data => {
             const botMessageDiv = document.createElement('div');
@@ -57,5 +59,3 @@ function escapeHtml(text) {
     div.textContent = text;
     return div.innerHTML;
 }
-
-
