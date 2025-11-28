@@ -230,7 +230,7 @@
             
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-            fetch(`/get?msg=${encodeURIComponent(message)}`)
+            fetch(`https://jaidel-chestnut-portfolio.onrender.com/get?msg=${encodeURIComponent(message)}`)
                 .then(response => response.text())
                 .then(data => {
                     const botMessageDiv = document.createElement('div');
@@ -263,3 +263,4 @@
     </script>
 </body>
 </html>
+
