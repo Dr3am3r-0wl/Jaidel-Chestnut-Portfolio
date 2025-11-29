@@ -2,3 +2,4 @@ flask
 nltk
 numpy
 scikit-learn
+flask-cors
