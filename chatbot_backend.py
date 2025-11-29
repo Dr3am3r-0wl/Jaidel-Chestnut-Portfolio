@@ -1,5 +1,6 @@
 import flask
 from flask import Flask, request, jsonify, render_template
+from flask_cors import CORS
 import json 
 import random 
 import pickle 
@@ -14,6 +15,7 @@ import os
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
+CORS(app)
 #runs server
 '''app = Flask(__name__)'''
 #Downloads needed NLTK at startup
@@ -119,3 +121,4 @@ def get_response():
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=False)
+
