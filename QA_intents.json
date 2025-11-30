@@ -1,42 +1,67 @@
 {"intents": [
         {"tag": "greeting",
-         "patterns": ["Hi", "How are you", "Is anyone there?", "Hello", "Good day", "Whats up"],
-         "responses": ["Hello!", "Good to see you again!", "Hi there, how can I help?"],
+         "patterns": ["Hi", "How are you", "Is anyone there?", "Hello", "Good day", "Whats up", "Hey", "Yo", "Greetings", "Heya"],
+         "responses": ["Hello!", "Hi there, how can I help?"],
          "context_set": ""
         },
         {"tag": "goodbye",
          "patterns": ["cya", "See you later", "Goodbye", "I am Leaving", "Have a Good day"],
-         "responses": ["Sad to see you go :(", "Talk to you later", "Goodbye!"],
+         "responses": ["Sad to see you go :(", "Byeeeee", "Goodbye!"],
          "context_set": ""
         },
         {"tag": "age",
-         "patterns": ["how old", "how old is tim", "what is your age", "how old are you", "age?"],
-         "responses": ["I am 18 years old!", "18 years young!"],
+         "patterns": ["how old is jaidel", "what is your age", "how old are you", "age?"],
+         "responses": ["I am 23 years old!", "23 years young!"],
          "context_set": ""
         },
         {"tag": "name",
          "patterns": ["what is your name", "what should I call you", "whats your name?"],
-         "responses": ["You can call me Tim.", "I'm Tim!", "I'm Tim aka Tech With Tim."],
+         "responses": ["You can call me Josefumi.", "I'm Josefumi!", "I'm Josefumi the virtual assistant."],
          "context_set": ""
         },
-        {"tag": "shop",
-         "patterns": ["Id like to buy something", "whats on the menu", "what do you reccommend?", "could i get something to eat"],
-         "responses": ["We sell chocolate chip cookies for $2!", "Cookies are on the menu!"],
+        {"tag": "reach",
+         "patterns": ["How can I reach you", "How do I contact you", "contact info", "contact me"],
+         "responses": ["There's form if you scroll down or click contact me! Fill it out and I'll get back to you as soon as I can."],
          "context_set": ""
         },
         {"tag": "hours",
-         "patterns": ["when are you guys open", "what are your hours", "hours of operation"],
+         "patterns": ["when are you available", "when are u available", "hours of operation"],
          "responses": ["We are open 7am-4pm Monday-Friday!"],
          "context_set": ""
         },
         {"tag": "payments",
          "patterns": ["do you take credit cards", "do you accept mastercard", "can i pay with paypal", "are you cash only"],
-         "responses": ["We accept VISA, Mastercard and Paypal"],
+         "responses": ["Sure! We can discuss that during the interview"],
          "context_set": ""
         },
         {"tag": "thanks",
          "patterns": ["Thanks", "Thank you", "That's helpful"],
          "responses": ["Happy to help!", "Any time!", "My pleasure"],
+         "context_set": ""
+        },
+        {"tag": "why",
+         "patterns": ["why is jaidel", "why do they exist"],
+         "responses": ["They just like what they do", "They enjoy life"],
+         "context_set": ""
+        },
+        {"tag": "projects",
+         "patterns": ["what projects have you done", "tell me about your projects", "projects"],
+         "responses": ["I have worked on a variety of projects including web development, systems design, and data analysis. You can check out my portfolio and resume for more details!"],
+         "context_set": ""
+        },
+        {"tag": "skills",
+         "patterns": ["what skills do you have", "tell me about your skills", "skills"],
+         "responses": ["I have skills in Python, JavaScript, HTML, CSS, and various frameworks such as Flask and React. I also have experience with penetration testing, cloud architecture, and digital forensics."],
+         "context_set": ""
+        },
+        {"tag": "education",
+         "patterns": ["what is your education", "tell me about your education", "education"],
+         "responses": ["I hold a Bachelor's degree in Computer Technology Speccialize in Network and Infrastructure Security from Bowie State University, and I have a an Associate's degree in Cybersecurity from Prince George's Community College."],
+         "context_set": ""
+        },
+        {"tag": "appearance",
+         "patterns": ["what does jaidel look like", "appearance of jaidel", "describe jaidel"],
+         "responses": ["Jaidel is an African American who goes by they/them pronouns. They have a tall slender build, brown eyes, and black hair styled in twists."],
          "context_set": ""
         }
    ]
